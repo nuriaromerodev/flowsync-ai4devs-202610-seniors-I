@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=$(jq -r '.tool_input.file_path // empty'); case \"$f\" in \"$CLAUDE_PROJECT_DIR\"/frontend/src/*) cd \"$CLAUDE_PROJECT_DIR/frontend\" && npx prettier --write \"$f\" >/dev/null ;; esac; exit 0"
+          }
+        ]
+      }
+    ]
+  }
+}
